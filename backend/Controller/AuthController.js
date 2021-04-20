@@ -35,17 +35,15 @@ exports.login = async (req, res, next) => {
     }
 };
 
-exports.logout = async (req, res, next) => {
-
-};
-
 exports.register = async (req, res, next) => {
     try {
         const {username , password ,email,name,surname} = req.body ;
         if(!username || !password || !email || !name || !surname){
           return res.json ( {message: "Cannot register with empty" })
         }else{
-            const user = database.map( item => item.username == username ).filter(item=> item.email == email)
+            const user = database.find( item => {
+                if(item.username == username && item.email == email) return item
+            })
             if (user)
             {
                 return res.json({message: "Already has user"})
@@ -54,6 +52,7 @@ exports.register = async (req, res, next) => {
                 let id = (database.length)?database[database.length-1].id+1 : 1
                 const hash  = await bcrypt.hash(password,10)
                 database.push({id,username , password : hash ,email,name,surname})
+                console.log(database)
                 return res.json({message:"Register success"})
             }
         }
@@ -62,3 +61,17 @@ exports.register = async (req, res, next) => {
     }
 };
 
+exports.logout = async (req, res, next) => {
+    res.setHeader(
+        "Set-Cookie",
+        cookie.serialize("token", '', {
+            httpOnly: true,
+            // secure: process.env.NODE_ENV !== "development",
+            maxAge: -1,
+            sameSite: "strict",
+            path: "/",
+        })
+    );
+    res.statusCode = 200
+    return res.json({ message: 'Logout successful' })
+};

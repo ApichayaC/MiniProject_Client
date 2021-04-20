@@ -16,7 +16,8 @@ passport.use(
         console.log('User: ', username, password)
         const user = userDB.find(item => item.username == username)
         if (user) {
-            if (user.password == password) {
+            const hash = await bcrypt.compare(password,user.password)
+            if (hash){
                 return cb(null,
                     user ,
                     { message: 'Logged In Successfully' })
