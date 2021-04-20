@@ -3,7 +3,7 @@ const SECRET = 'your_jwt_secret'
 const passport = require('passport');
 const cookie = require('cookie');
 const jwt = require('jsonwebtoken'); 
-const database = require('../Config/Database')
+const {DB} = require('../Config/Database')
 exports.login = async (req, res, next) => {
     console.log(req.body);
     try {
@@ -41,22 +41,24 @@ exports.register = async (req, res, next) => {
         if(!username || !password || !email || !name || !surname){
           return res.json ( {message: "Cannot register with empty" })
         }else{
-            const user = database.find( item => {
-                if(item.username == username && item.email == email) return item
-            })
+            const user = DB.users.find(item=> item.username == username || item.email == email)
+            console.log(user)
+
             if (user)
             {
                 return res.json({message: "Already has user"})
             }
             else{
-                let id = (database.length)?database[database.length-1].id+1 : 1
+                let id = (DB.users.length)?DB.users[DB.users.length-1].id+1 : 1
                 const hash  = await bcrypt.hash(password,10)
-                database.push({id,username , password : hash ,email,name,surname})
-                console.log(database)
-                return res.json({message:"Register success"})
+                DB.users.push({id,username , password : hash ,email,name,surname,books:[]})
+                console.log(DB.users)
+                return res.json({message:"Register success",data: DB.users})
+
             }
         }
     } catch (error) {
+        console.log(error);
         res.status(422).json({ message: "Cannot register" })
     }
 };

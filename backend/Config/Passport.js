@@ -1,4 +1,4 @@
-const userDB = require("./Database")
+const {DB} = require("./Database")
 const SECRET = 'your_jwt_secret'
 const passport = require('passport')
 const bcrypt = require('bcrypt')
@@ -14,7 +14,8 @@ passport.use(
         passwordField: 'password'
     }, async (username, password, cb) => {
         console.log('User: ', username, password)
-        const user = userDB.find(item => item.username == username)
+        console.log(typeof(DB.users));
+        const user = await DB.users.find(item => item.username == username)
         if (user) {
             const hash = await bcrypt.compare(password,user.password)
             if (hash){
@@ -48,11 +49,11 @@ passport.use(
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey: SECRET
     },
-        (jwtPayload, cb) => {
+        async (jwtPayload, cb) => {
             try {
                 // find the user in db if needed
                 console.log('jwt strategy')
-                const user = userDB.find(item => item.username == username)
+                const user = await DB.users.find(item => item.username == username)
                 if(user){
                     return cb(null,user);
                 }

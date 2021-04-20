@@ -8,6 +8,7 @@ const PORT = 3001 ;
 
 require('./Config/Passport')
 const authRouter = require('./Route/AuthRoute')
+const bookRoute = require('./Route/BookRoute')
 
 // app.use('/api',express.json(),router);
 // app.use('/api',express.urlencoded({extended: false}));
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/api',authRouter)
+app.use('/book',bookRoute)
 
 
 app.listen(PORT,()=>console.log('Server is running :',PORT))
