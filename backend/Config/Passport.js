@@ -1,7 +1,7 @@
 const userDB = require("./Database")
-
+const SECRET = 'your_jwt_secret'
 const passport = require('passport')
-//const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const passportJWT = require("passport-jwt"),
     ExtractJWT = passportJWT.ExtractJwt,
@@ -45,7 +45,7 @@ passport.use(
 passport.use(
     new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey: db.SECRET
+        secretOrKey: SECRET
     },
         (jwtPayload, cb) => {
             try {
