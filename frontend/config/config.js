@@ -1,4 +1,4 @@
-const LOCAL_URL = 'http://localhost:3001/api';
+const LOCAL_URL = 'http://localhost:3001';
 
 console.log('node env', process.env.NODE_ENV);
 

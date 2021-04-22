@@ -27,7 +27,7 @@ exports.login = async (req, res, next) => {
                 res.statusCode = 200
                 return res.json({ user, token })
             } else
-                return res.status(422).json(info)
+                return res.json(info)
         })(req, res, next)
 
     } catch (error) {
