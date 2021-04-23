@@ -1,17 +1,25 @@
-import { Card, Form, Input, InputNumber, Button, Modal } from 'antd';
+import { Card, Form, Input, Modal } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from '../config/config'
 import { useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { allActions } from '../store/actions'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createFromIconfontCN } from '@ant-design/icons';
+
+const IconFont = createFromIconfontCN({
+    scriptUrl: [
+        '//at.alicdn.com/t/font_1788044_0dwu4guekcwr.js', // icon-javascript, icon-java, icon-shoppingcart (overrided)
+        '//at.alicdn.com/t/font_1788592_a5xf2bdic3u.js', // icon-shoppingcart, icon-python
+    ],
+});
 
 const { Meta } = Card;
 const CatCard = (props) => {
     const allaction = bindActionCreators(allActions, useDispatch())
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [catUpdate, setCatUpdate] = useState({...props.cat})
+    const [catUpdate, setCatUpdate] = useState({ ...props.cat })
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -20,7 +28,7 @@ const CatCard = (props) => {
     const handleOk = () => {
         setIsModalVisible(false);
         console.log(catUpdate);
-        allaction.updateCat({...catUpdate})
+        allaction.updateCat({ ...catUpdate })
     };
 
     const handleCancel = () => {
@@ -28,7 +36,7 @@ const CatCard = (props) => {
 
     };
 
-    const sellCat = async () => {
+    const buyCat = async () => {
         allaction.deleteCat(props.cat);
     }
 
@@ -47,9 +55,9 @@ const CatCard = (props) => {
                     style={{ width: 300 }}
 
                     actions={[
-                        
-                        false? <SettingOutlined key="setting" onClick={sellCat} /> :"",
-                        <EditOutlined key="edit" onClick={showModal} />,
+
+                        props.index && !props.sell ? <IconFont type="icon-shoppingcart" onClick={buyCat} /> : "",
+                        !props.index && props.sell ? <EditOutlined onClick={showModal} /> : "",
                         //<EllipsisOutlined key="ellipsis" />,
                     ]}
                 >
@@ -64,13 +72,13 @@ const CatCard = (props) => {
             <div>
                 <Modal title={"Update " + props.cat.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >
                     <Form {...layout} name="nest-messages" validateMessages={validateMessages}>
-                        <Form.Item  label="Name" rules={[{ required: true }]}>
-                            <Input defaultValue={props.cat.name} onChange={e => setCatUpdate({ ...catUpdate, name: e.target.value })}/>
+                        <Form.Item label="Name" rules={[{ required: true }]}>
+                            <Input defaultValue={props.cat.name} onChange={e => setCatUpdate({ ...catUpdate, name: e.target.value })} />
                         </Form.Item>
                         <Form.Item label="Date of Birthbay" rules={[{ required: true }]}>
-                            <Input defaultValue={props.cat.dob} onChange={e => setCatUpdate({ ...catUpdate, dob: e.target.value })}/>
+                            <Input defaultValue={props.cat.dob} onChange={e => setCatUpdate({ ...catUpdate, dob: e.target.value })} />
                         </Form.Item>
-                        <Form.Item  label="Sex" rules={[{ required: true }]}>
+                        <Form.Item label="Sex" rules={[{ required: true }]}>
                             <Input defaultValue={props.cat.sex} onChange={e => setCatUpdate({ ...catUpdate, sex: e.target.value })} />
                         </Form.Item>
                     </Form>

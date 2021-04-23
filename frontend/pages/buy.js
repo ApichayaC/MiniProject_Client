@@ -4,8 +4,9 @@ import CatCard from '../components/catCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { allActions } from '../store/actions'
-
-export default function Buy() {
+import withAuth from '../components/withAuth'
+import Navbar from '../components/navbar'
+function Buy() {
 
     const allaction = bindActionCreators(allActions, useDispatch())
     const cats = useSelector((state) => state.cats)
@@ -19,15 +20,22 @@ export default function Buy() {
     }, [])
     return (
         <div>
+            <Navbar />
             <div>
                 {
                     cats ? cats.map(item => {
                         return (
-                          <CatCard cat={item} />
+                          <CatCard index={true} sell={false} cat={item} />
                         )
                     }) : "NO DATA"
                 }
             </div>
         </div>
     )
+}
+
+export default withAuth(Buy)
+
+export function getServerSideProps({ req, res }) {
+    return { props: { token: req.cookies.token || "" } };
 }

@@ -25,7 +25,7 @@ exports.login = async (req, res, next) => {
                     })
                 );
                 res.statusCode = 200
-                return res.json({ user, token })
+                return res.json({ user, token, message: info.message })
             } else
                 return res.json(info)
         })(req, res, next)
@@ -78,7 +78,7 @@ exports.logout = async (req, res, next) => {
     return res.json({ message: 'Logout successful' })
 };
 
-exports.user =  async (req,res,next) => {
+exports.user = async (req, res, next) => {
     try {
         res.json(DB.users);
     } catch (error) {

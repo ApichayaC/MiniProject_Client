@@ -2,17 +2,15 @@ import axios from "axios";
 import config from '../config/config'
 
 export const allActions = {
-    logout: () => async (dispatch) => {
-
-    },
-    login: (user) => async (dispatch) => {
-        const data = await axios.post(config.URL + "/api/login", { ...user })
-        if (data.data.token) {
-            dispatch({ data: data, type: "LOGIN" })
-        } else {
-            dispatch({ data: {}, type: "LOGIN" })
-        }
-    },
+    
+    // login: (user) => async (dispatch) => {
+    //     const data = await axios.post(config.URL + "/api/login", { ...user })
+    //     if (data.data.token) {
+    //         dispatch({ data: data, type: "LOGIN" })
+    //     } else {
+    //         dispatch({ data: {}, type: "LOGIN" })
+    //     }
+    // },
     getCats: () => async (dispatch) => {
         const data = await axios.get(config.URL + "/cat/show")
         dispatch({ data: data.data, type: "GET_CATS" })
@@ -31,10 +29,10 @@ export const allActions = {
         const data = await axios.put(config.URL + "/cat/update/" + cat.id, { ...cat })
         dispatch({ data: cat, type: "UPDATE_CAT" })
     },
-    register: (user) => async (dispatch) => {
-        const data = await axios.post(config.URL + "/auth/register", { ...user })
-        console.log(data.data);
-    }
+    // register: (user) => async (dispatch) => {
+    //     const data = await axios.post(config.URL + "/auth/register", { ...user })
+    //     console.log(data.data);
+    // }
 
 
 
