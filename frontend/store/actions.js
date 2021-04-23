@@ -12,11 +12,9 @@ export const allActions = {
         } else {
             dispatch({ data: {}, type: "LOGIN" })
         }
-
     },
     getCats: () => async (dispatch) => {
         const data = await axios.get(config.URL + "/cat/show")
-        console.log(data.data);
         dispatch({ data: data.data, type: "GET_CATS" })
     },
     deleteCat: (cat) => async (dispatch) => {
@@ -27,8 +25,15 @@ export const allActions = {
     },
     addCat: (cat) => async (dispatch) => {
         const data = await axios.post(config.URL + "/cat/add", { ...cat })
-        console.log(data);
         dispatch({ data: cat, type: "ADD_CAT" })
+    },
+    updateCat: (cat) => async (dispatch) => {
+        const data = await axios.put(config.URL + "/cat/update/" + cat.id, { ...cat })
+        dispatch({ data: cat, type: "UPDATE_CAT" })
+    },
+    register: (user) => async (dispatch) => {
+        const data = await axios.post(config.URL + "/auth/register", { ...user })
+        console.log(data.data);
     }
 
 

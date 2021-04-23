@@ -3,6 +3,8 @@ import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css'
 
+import { Tabs } from 'antd';
+
 export default function Home({ token }) {
   console.log(token);
   return (
@@ -16,6 +18,7 @@ export default function Home({ token }) {
         No login required!
     </div>
     </Layout>
+    
   )
 }
 

@@ -1,14 +1,10 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import { useState } from 'react'
-import Navbar from '../components/navbar'
-import styles from '../styles/Home.module.css'
-import axios from 'axios'
-import config from '../config/config'
 import { Form, Input, Button} from 'antd';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { allActions } from '../store/actions'
+import Navbar from '../components/navbar';
 
 export default function Login({ token }) {
     const allaction = bindActionCreators(allActions, useDispatch())
@@ -23,6 +19,11 @@ export default function Login({ token }) {
     };
 
     return (
+        <Layout>
+            <Head>
+                <title>login</title>
+            </Head>
+            <Navbar/>
         <Form
             name="basic"
             initialValues={{ remember: true }}
@@ -53,6 +54,8 @@ export default function Login({ token }) {
             </Button>
             </Form.Item>
         </Form>
+        </Layout>
+
     )
 }
 
