@@ -7,6 +7,7 @@ exports.get = async (req, res) => {
 }
 
 exports.post = async (req, res) => {
+    console.log(req.body);
     const newCat = {}
     newCat.id = (cats.length) ? cats[cats.length - 1].id + 1 : 1
     newCat.name = req.body.name

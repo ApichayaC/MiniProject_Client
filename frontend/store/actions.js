@@ -9,7 +9,7 @@ export const allActions = {
         const data = await axios.post(config.URL + "/api/login", { ...user })
         if (data.data.token) {
             dispatch({ data: data, type: "LOGIN" })
-        }else{
+        } else {
             dispatch({ data: {}, type: "LOGIN" })
         }
 
@@ -24,7 +24,13 @@ export const allActions = {
         if (data.data.status) {
             dispatch({ data: cat, type: "DELETE_CAT" })
         }
+    },
+    addCat: (cat) => async (dispatch) => {
+        const data = await axios.post(config.URL + "/cat/add", { ...cat })
+        console.log(data);
+        dispatch({ data: cat, type: "ADD_CAT" })
     }
+
 
 
 

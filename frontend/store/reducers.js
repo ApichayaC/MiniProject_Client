@@ -18,6 +18,12 @@ const catReducer = (state = [], { data, type }) => {
             return data
         case 'DELETE_CAT':
             return state.filter(item => data.id != item.id)
+        case 'ADD_CAT':
+            return [...state, { ...data, id: state.length ? state[state.length - 1].id + 1 : 1 }]
+        case 'UPDATE_CAT':
+            return state.map(cat => {
+                return (+cat.id === +data.id) ? data : cat
+            })
         default:
             return state
     }
@@ -37,7 +43,7 @@ const userReducer = (state = initialUser, { data, type }) => {
 
 const reducer = {
     cats: catReducer,
-    user : userReducer
+    user: userReducer
 };
 
 export default combineReducers(reducer);
