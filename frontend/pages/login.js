@@ -57,47 +57,49 @@ export default function Login({ token }) {
         //     </div>
 
         // </div>
-        <Layout>
+        <Layout >
             <Head>
                 <title>login</title>
             </Head>
-            <Navbar />
-            <div className="space-align-container" style={loginCss.form}>
-                <div className="space-align-block" >
-                    <Space align="center" style={{ alignItems: "baseline" }}>
-                        <Footer>
-                            <Form
-                                name="basic"
-                                initialValues={{ remember: true }}
-                                onFinish={onFinish}
-                                onFinishFailed={onFinishFailed}
-                                style={{ alignItems: "center", textAlign: 'center', }}
-                            >
-                                <Form.Item
-                                    label="Username"
-                                    name="username"
-                                    rules={[{ required: true, message: 'Please input your username!' }]}
+            <div style={{backgroundColor :"#e8b298"}}>
+                <Navbar />
+                <div className="space-align-container" className={loginCss.form} >
+                    <div className="space-align-block" >
+                        <Space align="center" style={{ alignItems: "baseline" }}>
+                            <Footer>
+                                <Form
+                                    name="basic"
+                                    initialValues={{ remember: true }}
+                                    onFinish={onFinish}
+                                    onFinishFailed={onFinishFailed}
+                                    style={{ alignItems: "center", textAlign: 'center', }}
                                 >
-                                    <Input />
-                                    {/* <Input /> */}
-                                    {/* <Input onChange={e => setUser({ ...user, username: e.target.value })} /> */}
-                                </Form.Item>
-                                <Form.Item
-                                    label="Password"
-                                    name="password"
-                                    rules={[{ required: true, message: 'Please input your password!' }]}
-                                >
-                                    <Input.Password />
-                                    {/* <Input.Password onChange={e => setUser({ ...user, password: e.target.value })} /> */}
-                                </Form.Item>
+                                    <Form.Item
+                                        label="Username"
+                                        name="username"
+                                        rules={[{ required: true, message: 'Please input your username!' }]}
+                                    >
+                                        <Input />
+                                        {/* <Input /> */}
+                                        {/* <Input onChange={e => setUser({ ...user, username: e.target.value })} /> */}
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Password"
+                                        name="password"
+                                        rules={[{ required: true, message: 'Please input your password!' }]}
+                                    >
+                                        <Input.Password />
+                                        {/* <Input.Password onChange={e => setUser({ ...user, password: e.target.value })} /> */}
+                                    </Form.Item>
 
-                                <Form.Item >
-                                    <Button type="primary" htmlType="submit"> Login </Button>
-                                </Form.Item>
-                            </Form>
+                                    <Form.Item >
+                                        <Button type="primary" htmlType="submit"> Login </Button>
+                                    </Form.Item>
+                                </Form>
 
-                        </Footer>
-                    </Space>
+                            </Footer>
+                        </Space>
+                    </div>
                 </div>
             </div>
         </Layout>

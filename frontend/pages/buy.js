@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CatCard from '../components/catCard'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,6 +5,8 @@ import { bindActionCreators } from 'redux'
 import { allActions } from '../store/actions'
 import withAuth from '../components/withAuth'
 import Navbar from '../components/navbar'
+import css from '../styles/Login.module.css'
+
 function Buy() {
 
     const allaction = bindActionCreators(allActions, useDispatch())
@@ -19,13 +20,20 @@ function Buy() {
         getCats()
     }, [])
     return (
-        <div>
+        <div style={{backgroundColor :"#e8b298"}}> 
             <Navbar />
-            <div>
+
+            <div style={{
+                 display: "flex",
+                 flexWrap: "wrap",
+                 justifyContent: "space-around"
+            }} >
                 {
-                    cats ? cats.map(item => {
+                    cats ? cats.map((item, index) => {
                         return (
-                          <CatCard index={true} sell={false} cat={item} />
+                            <div style={{marginTop:"30px", }} key={index}>
+                                <CatCard  index={true} sell={false} cat={item} id={index} />
+                            </div>
                         )
                     }) : "NO DATA"
                 }

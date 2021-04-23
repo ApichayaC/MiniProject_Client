@@ -2,4 +2,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;    
 }
+
+.buttonb{
+    border-radius: 5px;
+    background-color: #a26360;
+    color: white;
+}
+.form_add_container{
+    display: flex;
+    justify-content: center;
+    
+    background-color: #e8b298;
+    color: white;
+}
+.form_add{
+    align-items : center ;
+    
+    border-radius: 5px;
+    margin-top: 30px;
+    padding: 20px 20px ;
+    border: 1px white solid;
+    color: white;
+    background-color: #9daaa2;
+}
+
+/* .wrap_card{
+} */

@@ -24,21 +24,32 @@ export default function Home({ token }) {
     getCats()
   }, [])
   return (
-    <Layout>
+    
+    <Layout >
       <Head>
         <title>Cat Shop</title>
       </Head>
-      <Navbar />
-      <div>
-        {
-          cats ? cats.map(item => {
-            return (
-              <CatCard index={false} cat={item} />
-            )
-          }) : "NO DATA"
-        }
+      <div style={{ backgroundColor: "#e8b298" }}>
+        <Navbar />
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around"
+          }} >
+          {
+            cats ? cats.map((item, index) => {
+              return (
+                <div style={{ marginTop: "30px", }}>
+                  <CatCard index={false} cat={item} id={index} />
+                </div>
+
+              )
+            }) : "NO DATA"
+          }
+        </div>
       </div>
-    </Layout>
+    </Layout >
 
   )
 }

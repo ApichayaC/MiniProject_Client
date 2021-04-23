@@ -7,6 +7,7 @@ import axios from 'axios'
 import config from '../config/config'
 import { Form, Input, Button, message } from 'antd'
 import { useRouter } from 'next/router'
+import { Footer } from 'antd/lib/layout/layout'
 
 export default function Register({ token }) {
     const router = useRouter()
@@ -45,32 +46,35 @@ export default function Register({ token }) {
                 <title>Register</title>
             </Head>
             <Navbar />
-            <Form name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['user', 'surname']} label="Surname" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['user', 'username']} label="username" rules={[{ required: true }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item name={['user', 'confirmPassword']} label="Confrim Password" rules={[{ required: true }]}>
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item wrapperCol={{ offset: 8 }}>
-                    <Button type="primary" htmlType="submit">
-                        Submit
+            <div style={{ backgroundColor: "#e8b298" }}>
+                <Footer>
+                    <Form name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                        <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'surname']} label="Surname" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'username']} label="username" rules={[{ required: true }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
+                            <Input.Password />
+                        </Form.Item>
+                        <Form.Item name={['user', 'confirmPassword']} label="Confrim Password" rules={[{ required: true }]}>
+                            <Input.Password />
+                        </Form.Item>
+                        <Form.Item wrapperCol={{ offset: 8 }}>
+                            <Button type="primary" htmlType="submit">
+                                Submit
                 </Button>
-                </Form.Item>
-            </Form>
-
+                        </Form.Item>
+                    </Form>
+                </Footer>
+            </div>
         </Layout>
     )
 }

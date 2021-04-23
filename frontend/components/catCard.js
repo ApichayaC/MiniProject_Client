@@ -1,4 +1,4 @@
-import { Card, Form, Input, Modal } from 'antd';
+import { Card, Form, Input, Modal, Button } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from '../config/config'
@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { allActions } from '../store/actions'
 import { useState, useEffect } from 'react'
 import { createFromIconfontCN } from '@ant-design/icons';
+import loginCss from '../styles/Login.module.css'
 
 const IconFont = createFromIconfontCN({
     scriptUrl: [
@@ -51,7 +52,7 @@ const CatCard = (props) => {
     return (
         <div>
             <div>
-                <Card
+                {/* <Card
                     style={{ width: 300 }}
 
                     actions={[
@@ -63,10 +64,26 @@ const CatCard = (props) => {
                 >
                     <Meta
                         //avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                        title={`${props.cat.id}.${props.cat.name}`}
+                        title={`${props.id+1}.${props.cat.name}`}
                         description={`Date of Birth : ${props.cat.dob} Sex : ${props.cat.sex}`}
 
                     />
+                </Card> */}
+                <Card
+                    headStyle={{ borderRadius: '9px 9px 0px 0px', backgroundColor: "#d4a29c", color: "black" , border:'1px white solid'}}
+                    bodyStyle={{ borderRadius: '0px 0px 9px 9px', backgroundColor: "#d4a29c", color: "black" , border:'1px white solid'}}
+                    bordered = {false}
+                    title={`${props.id + 1}. ${props.cat.name}`}
+
+                    // extra={<a href="#">More</a>} 
+                    extra={props.index && !props.sell ? <Button onClick={buyCat} className={loginCss.buttonb}>Buy</Button> : !props.index && props.sell ?
+                        <Button onClick={showModal} className={loginCss.buttonb}>Update</Button> : ""}
+
+                    style={{ width: 300 }}
+                >
+                    <p> {`Date of Birth : ${props.cat.dob}`} </p>
+                    <p> {`Sex :${props.cat.dob}`} </p>
+
                 </Card>
             </div>
             <div>
