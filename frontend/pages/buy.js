@@ -6,6 +6,7 @@ import { allActions } from '../store/actions'
 import withAuth from '../components/withAuth'
 import Navbar from '../components/navbar'
 import css from '../styles/Login.module.css'
+import { Image } from 'antd';
 
 function Buy() {
 
@@ -20,19 +21,43 @@ function Buy() {
         getCats()
     }, [])
     return (
-        <div style={{backgroundColor :"#e8b298"}}> 
+        <div style={{ backgroundColor: "#e8b298", height: "100vh" }}>
             <Navbar />
-
             <div style={{
-                 display: "flex",
-                 flexWrap: "wrap",
-                 justifyContent: "space-around"
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center",
+                margin: "30px"
+            }}>
+                <Image
+                    width={800}
+                    src="https://image.freepik.com/vector-gratis/dibujar-coleccion-divertido-gato-lindo-estilo-dibujos-animados-doodle_45130-1048.jpg">
+
+                </Image>
+            </div>
+            <div style={{
+                justifyContent: "center",
+                textAlign: "center",
+                fontSize: "40px",
+                color: "white",
+                fontFamily: "'Pacifico', cursive",
+          
+                margin: "20px 20px",
+                borderRadius: "50px",
+                backgroundColor: "#edcc8b"
+            }}>
+                <a>You can choose to buy cats.</a>
+            </div>
+            <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center"
             }} >
                 {
                     cats ? cats.map((item, index) => {
                         return (
-                            <div style={{marginTop:"30px", }} key={index}>
-                                <CatCard  index={true} sell={false} cat={item} id={index} />
+                            <div style={{ marginTop: "30px", }} key={index}>
+                                <CatCard index={true} sell={false} cat={item} id={index} />
                             </div>
                         )
                     }) : "NO DATA"

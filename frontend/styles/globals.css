@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
-html,
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+html{
+  font:15px;
+  background-size:cover;
+}
 body {
   padding: 0;
   margin: 0;

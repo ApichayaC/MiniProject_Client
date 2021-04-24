@@ -8,6 +8,7 @@ import { allActions } from '../store/actions'
 import { useState, useEffect } from 'react'
 import { createFromIconfontCN } from '@ant-design/icons';
 import loginCss from '../styles/Login.module.css'
+import cardCss from '../styles/Card.module.css'
 
 const IconFont = createFromIconfontCN({
     scriptUrl: [
@@ -69,7 +70,7 @@ const CatCard = (props) => {
 
                     />
                 </Card> */}
-                <Card
+                {/* <Card
                     headStyle={{ borderRadius: '9px 9px 0px 0px', backgroundColor: "#d4a29c", color: "black" , border:'1px white solid'}}
                     bodyStyle={{ borderRadius: '0px 0px 9px 9px', backgroundColor: "#d4a29c", color: "black" , border:'1px white solid'}}
                     bordered = {false}
@@ -82,9 +83,55 @@ const CatCard = (props) => {
                     style={{ width: 300 }}
                 >
                     <p> {`Date of Birth : ${props.cat.dob}`} </p>
-                    <p> {`Sex :${props.cat.dob}`} </p>
+                    <p> {`Sex : ${props.cat.sex}`} </p>
 
-                </Card>
+                </Card> */}
+                {/*<div className={cardCss.card_wrap}>
+                    <div className={cardCss.profile_pic_wrap}>
+                        <img src="https://scontent-yyz1-1.cdninstagram.com/t51.2885-19/s320x320/12543142_446352545560748_362768810_a.jpg" alt="" />
+                    </div>
+                    <div className={cardCss.info_wrap}>
+                        <h1 className={cardCss.user_name}>Adam Leith P</h1>
+                        <p>UX Designer / Web Developer</p>
+                    </div>
+
+                </div>*/}
+                <div className={cardCss.content}>
+                    
+                    <div className={cardCss.card}>
+                        <p className={cardCss.title}>
+                            <p>
+                                {props.cat.name} 
+                                </p>
+                             <p> {`${props.cat.dob}`} </p>
+                            <p> {`${props.cat.sex}`} </p>
+                        </p>
+                        <p className={cardCss.text}>
+                            <div>{props.index && !props.sell ? <Button onClick={buyCat} className={loginCss.buttonb}>Buy</Button> : !props.index && props.sell ?
+                        <Button onClick={showModal} className={loginCss.buttonb}>Update</Button> : ""}</div>
+                        </p>
+                    </div>
+
+                    {/* <div className={cardCss.card}>
+                        <div className={cardCss.icon}>
+                            <i className="">favorite_border</i>
+                        </div>
+                        <p className={cardCss.title}>Favourites</p>
+                        <p className={cardCss.text}>
+                            Check all your favourites in one place.
+            </p>
+                    </div>
+
+                    <div className={cardCss.card}>
+                        <div className={cardCss.icon}>
+                            <i className="">alternate_email</i>
+                        </div>
+                        <p className={cardCss.title}>Contacts</p>
+                        <p className={cardCss.text}>
+                            Add or change your contacts and links.
+            </p>
+                    </div>*/}
+                </div>
             </div>
             <div>
                 <Modal title={"Update " + props.cat.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >

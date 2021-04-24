@@ -29,12 +29,26 @@ function Sell() {
         allaction.getCats()
     }, [])
     return (
-        <div style={{backgroundColor :"#e8b298"}}>
+        <div style={{ backgroundColor: "#e8b298", height: "100vh" }}>
             <Navbar />
+            <div style={{
+                justifyContent: "center",
+                textAlign: "center",
+                fontSize: "40px",
+                color: "white",
+                fontFamily: "'Pacifico', cursive",
+
+                margin: "20px 20px",
+                borderRadius: "50px",
+                backgroundColor: "#edcc8b"
+            }}>
+                <a>You can fill out the information for selling cats.</a>
+            </div>
             <div className={css.form_add_container}>
+
                 <div className={css.form_add}>
 
-                    <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                    <Form name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
                         <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
@@ -44,29 +58,30 @@ function Sell() {
                         <Form.Item name={['user', 'sex']} label="Sex" rules={[{ required: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                        <div style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
                             <Button type="primary" htmlType="submit" style={{
-                                borderRadius :"8px" ,
-                                color:"white",
-                                backgroundColor:"#BDD1c5",
-                                border :" 1px white solid"
+                                borderRadius: "8px",
+                                color: "white",
+                                backgroundColor: "#BDD1c5",
+                                border: " 1px white solid",
+
                             }}>
                                 ADD
                         </Button>
-                        </Form.Item>
+                        </div>
                     </Form>
                 </div>
             </div>
             <div style={{
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "space-around"
-                
+                justifyContent: "center"
+
             }} >
                 {
                     cats ? cats.map((item, index) => {
                         return (
-                            <div style={{marginTop:30}} key={index}>
+                            <div style={{ marginTop: 30 }} key={index}>
                                 <CatCard index={false} sell={true} cat={item} id={index} />
                             </div>
                         )
